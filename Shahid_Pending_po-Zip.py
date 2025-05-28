@@ -205,10 +205,13 @@ def shahid_sir_pending():
     
 
         
+        screenshot_dir = "screenshots"
+        os.makedirs(screenshot_dir, exist_ok=True)
+
         if has_first and has_second:
             print("✅ Both elements exist – running full export flow.")
             try:
-                # Click on all the checkbox 3 times
+                # Click all the checkboxes once (adjust as needed)
                 click_when_clickable(driver, "/html/body/div[1]/div/div[2]/div[2]/table/thead/tr/th[1]/div/input")
                 time.sleep(2)
 
@@ -220,15 +223,15 @@ def shahid_sir_pending():
 
             except Exception as e:
                 timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-                screenshot = f"screenshot_full_{timestamp}.png"
-                driver.save_screenshot(screenshot)
+                screenshot_path = os.path.join(screenshot_dir, f"screenshot_full_{timestamp}.png")
+                driver.save_screenshot(screenshot_path)
                 print(f"❌ Error during full export flow: {e}")
-                print(f"📸 Screenshot saved: {screenshot}")
+                print(f"📸 Screenshot saved: {screenshot_path}")
 
         elif has_first or has_second:
             print("⚠️ Only one element exists – running partial export flow.")
             try:
-                # Click on all the checkbox 3 times
+                # Click all the checkboxes 3 times
                 for _ in range(3):
                     click_when_clickable(driver, "/html/body/div[1]/div/div[2]/div[2]/table/thead/tr/th[1]/div/input")
                     time.sleep(1)
@@ -238,10 +241,10 @@ def shahid_sir_pending():
 
             except Exception as e:
                 timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-                screenshot = f"screenshot_partial_{timestamp}.png"
-                driver.save_screenshot(screenshot)
+                screenshot_path = os.path.join(screenshot_dir, f"screenshot_partial_{timestamp}.png")
+                driver.save_screenshot(screenshot_path)
                 print(f"❌ Error during partial export flow: {e}")
-                print(f"📸 Screenshot saved: {screenshot}")
+                print(f"📸 Screenshot saved: {screenshot_path}")
 
 while True:
     try:
