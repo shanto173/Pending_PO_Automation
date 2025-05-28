@@ -59,6 +59,53 @@ def is_file_downloaded():
     return any(Path(download_dir).glob(f"*{pattern}*.xlsx"))
 
 
+def expand_all_rows(driver, table_xpath):
+    """
+    Recursively clicks on all expandable icons in the table.
+    """
+    expanded_set = set()
+
+    while True:
+        expandable_icons = driver.find_elements(By.XPATH, f"{table_xpath}/tbody//th[1]/div/span")
+
+        new_clicks = 0
+        for i, icon in enumerate(expandable_icons):
+            # Create a unique identifier for each icon
+            icon_id = icon.get_attribute("outerHTML")
+            if icon_id not in expanded_set:
+                try:
+                    driver.execute_script("arguments[0].scrollIntoView(true);", icon)
+                    icon.click()
+                    time.sleep(1)  # wait for expansion to complete
+                    expanded_set.add(icon_id)
+                    new_clicks += 1
+                except Exception as e:
+                    print(f"⚠️ Could not expand item {i+1}: {e}")
+
+        if new_clicks == 0:
+            break  # nothing new to click, all expanded
+
+    print("✅ All expandable rows unfolded.")
+
+
+def click_all_checkboxes(driver, table_xpath):
+    """
+    Clicks all checkboxes inside the specified table, skipping the first one (usually 'select all').
+    """
+    checkboxes = driver.find_elements(By.XPATH, f"{table_xpath}//input[@type='checkbox']")
+    print(f"🧾 Found {len(checkboxes)} checkboxes.")
+
+    for i, checkbox in enumerate(checkboxes[1:], start=2):  # Start from the second checkbox
+        try:
+            driver.execute_script("arguments[0].scrollIntoView(true);", checkbox)
+            checkbox.click()
+            time.sleep(0.1)
+            print(f"✅ Clicked checkbox {i}")
+        except Exception as e:
+            print(f"❌ Failed to click checkbox {i}: {e}")
+
+
+
 def click_when_clickable(driver, xpath, timeout=10):
     """
     Clicks an element when it becomes clickable.
@@ -208,13 +255,12 @@ def shahid_sir_pending():
         if has_first and has_second:
             print("✅ Both elements exist – running full export flow.")
             try:
-                # Click on all the checkbox 3 times
-                click_when_clickable(driver, "/html/body/div[1]/div/div[2]/div[2]/table/thead/tr/th[1]/div/input")
-                time.sleep(2)
-                # Click on select all
-                click_when_clickable(driver, "/html/body/div[1]/div/div[1]/div/div[2]/div/div[1]/span/a[1]")
-                time.sleep(2)
-
+                 # Click all the checkboxes 3 times
+                table_xpath = "/html/body/div[1]/div/div[2]/div[2]"
+                expand_all_rows(driver, table_xpath)
+                time.sleep(4)
+                click_all_checkboxes(driver, table_xpath)
+                time.sleep(5)
                 same_work()
 
             except Exception as e:
@@ -227,12 +273,12 @@ def shahid_sir_pending():
         elif has_first or has_second:
             print("⚠️ Only one element exists – running partial export flow.")
             try:
-                # Click on all the checkbox 3 times
-                click_when_clickable(driver, "/html/body/div[1]/div/div[2]/div[2]/table/thead/tr/th[1]/div")
-                click_when_clickable(driver, "/html/body/div[1]/div/div[2]/div[2]/table/thead/tr/th[1]/div")
-                click_when_clickable(driver, "/html/body/div[1]/div/div[2]/div[2]/table/thead/tr/th[1]/div")
-                
-                time.sleep(1)
+                 # Click all the checkboxes 3 times
+                table_xpath = "/html/body/div[1]/div/div[2]/div[2]"
+                expand_all_rows(driver, table_xpath)
+                time.sleep(4)
+                click_all_checkboxes(driver, table_xpath)
+                time.sleep(5)
                 same_work()
 
             except Exception as e:
