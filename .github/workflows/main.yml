@@ -74,29 +74,29 @@ jobs:
           GOOGLE_APPLICATION_CREDENTIALS: gcreds.json
         run: python Shahid_Pending_po-MT.py
 
-# Suranjan
-      - name: Run Suranjan_Pending_po-Zip
-        env:
-          GOOGLE_APPLICATION_CREDENTIALS: gcreds.json
-        run: python Suranjon_Pending_po-Zip.py
+# # Suranjan
+#       - name: Run Suranjan_Pending_po-Zip
+#         env:
+#           GOOGLE_APPLICATION_CREDENTIALS: gcreds.json
+#         run: python Suranjon_Pending_po-Zip.py
 
-      - name: Run Suranjan_Pending_po-MT
-        env:
-          GOOGLE_APPLICATION_CREDENTIALS: gcreds.json
-        run: python Suranjon_Pending_po-MT.py
+#       - name: Run Suranjan_Pending_po-MT
+#         env:
+#           GOOGLE_APPLICATION_CREDENTIALS: gcreds.json
+#         run: python Suranjon_Pending_po-MT.py
 
 
-# Monir
+# # Monir
 
-      - name: Run Monir_Pending_po-Zip
-        env:
-          GOOGLE_APPLICATION_CREDENTIALS: gcreds.json
-        run: python Monir_Pending_po-Zip.py
+#       - name: Run Monir_Pending_po-Zip
+#         env:
+#           GOOGLE_APPLICATION_CREDENTIALS: gcreds.json
+#         run: python Monir_Pending_po-Zip.py
 
-      - name: Run Monir_Pending_po-MT
-        env:
-          GOOGLE_APPLICATION_CREDENTIALS: gcreds.json
-        run: python Monir_Pending_po-MT.py
+#       - name: Run Monir_Pending_po-MT
+#         env:
+#           GOOGLE_APPLICATION_CREDENTIALS: gcreds.json
+#         run: python Monir_Pending_po-MT.py
 
 
 
