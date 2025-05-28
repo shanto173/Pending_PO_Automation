@@ -16,11 +16,29 @@ from datetime import datetime  # 🔹 Import for timestamp
 from selenium.common.exceptions import TimeoutException
 import time
 from selenium.common.exceptions import NoSuchElementException
-
-
+import os
+import time
+import re
+from pathlib import Path
+import pandas as pd
+from google.auth.transport.requests import Request
+from google.oauth2 import service_account
+import gspread
+from gspread_dataframe import set_with_dataframe
+from datetime import datetime
+import pytz
+import sys
+import logging
 # === Setup: download directory ===
-download_dir = r"C:\Users\Ariful\Desktop\selenium_download_file\Inventory_report_download"
+# === Setup Logging ===
+# This sets up logging to the console (GitHub Actions will capture this)
+logging.basicConfig(stream=sys.stdout, level=logging.INFO)
+log = logging.getLogger()
+
+# === Setup: Linux-compatible download directory ===
+download_dir = os.path.join(os.getcwd(), "download")
 os.makedirs(download_dir, exist_ok=True)
+
 
 chrome_options = webdriver.ChromeOptions()
 # chrome_options = webdriver.ChromeOptions()
@@ -149,8 +167,7 @@ def suranjan_sir_pending():
         print("Text found:", text)
         
         scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
-        creds = ServiceAccountCredentials.from_json_keyfile_name(
-            "smiling-castle-458204-g0-5b5c549533a0.json", scope)
+        creds = service_account.Credentials.from_service_account_file('gcreds.json', scopes=scope)
         client = gspread.authorize(creds)
 
         # Open the sheet and paste the data
@@ -165,9 +182,10 @@ def suranjan_sir_pending():
         print("Data pasted to Google Sheet (Sheet4).")
 
         # === ✅ Add timestamp to Y2 ===
-        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        worksheet.update("C2", [[f"{timestamp}"]])
-        print(f"Timestamp written to C2: {timestamp}")
+        local_tz = pytz.timezone('Asia/Dhaka')
+        local_time = datetime.now(local_tz).strftime("%Y-%m-%d %H:%M:%S")
+        worksheet.update("C2", [[f"{local_time}"]])
+        print(f"Timestamp written to C2: {local_time}")
         
         exit()
         # Do one thing here
@@ -304,8 +322,7 @@ try:
 
     # Setup Google Sheets API
     scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
-    creds = ServiceAccountCredentials.from_json_keyfile_name(
-        "smiling-castle-458204-g0-5b5c549533a0.json", scope)
+    creds = service_account.Credentials.from_service_account_file('gcreds.json', scopes=scope)
     client = gspread.authorize(creds)
 
     # Open the sheet and paste the data
@@ -320,9 +337,10 @@ try:
     print("Data pasted to Google Sheet (Sheet4).")
 
     # === ✅ Add timestamp to Y2 ===
-    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    worksheet.update("W2", [[f"{timestamp}"]])
-    print(f"Timestamp written to W2: {timestamp}")
+    local_tz = pytz.timezone('Asia/Dhaka')
+    local_time = datetime.now(local_tz).strftime("%Y-%m-%d %H:%M:%S")
+    worksheet.update("W2", [[f"{local_time}"]])
+    print(f"Timestamp written to W2: {local_time}")
 
 except Exception as e:
     print(f"Error while pasting to Google Sheets: {e}")
