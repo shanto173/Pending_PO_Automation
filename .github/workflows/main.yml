@@ -1,1 +1,48 @@
+name: pending_po
 
+on:
+  workflow_dispatch:  # Manual run
+  schedule:
+    - cron: '0 2 * * *'   # 8:00 AM BD
+    - cron: '0 3 * * *'   # 9:00 AM BD
+    - cron: '30 3 * * *'  # 9:30 AM BD
+    - cron: '58 3 * * *'  # 9:58 AM BD
+    - cron: '0 4 * * *'   # 10:00 AM BD
+    - cron: '30 4 * * *'  # 10:30 AM BD
+    - cron: '0 5 * * *'   # 11:00 AM BD
+    - cron: '30 5 * * *'  # 11:30 AM BD
+    - cron: '0 6 * * *'   # 12:00 PM BD
+    - cron: '30 6 * * *'  # 12:30 PM BD
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          pip install selenium pandas gspread oauth2client gspread-dataframe webdriver-manager openpyxl pytz google-auth
+
+      - name: Setup Chrome
+        uses: browser-actions/setup-chrome@latest
+
+      - name: Create creds file
+        run: |
+          echo "${{ secrets.GCREDS_JSON }}" | base64 -d > gcreds.json
+
+      - name: Run Depak_Pending_po-Zip
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: gcreds.json
+        run: python Depak_Pending_po-Zip.py
+
+
+      - name: Clean up creds
+        run: rm gcreds.json
