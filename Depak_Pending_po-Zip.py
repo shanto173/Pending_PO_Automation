@@ -59,6 +59,43 @@ def is_file_downloaded():
     return any(Path(download_dir).glob(f"*{pattern}*.xlsx"))
 
 
+def expand_by_group_class(driver):
+    """
+    Expand all groups that are currently collapsed using class-based logic.
+    """
+    while True:
+        # Find all carets in collapsed group headers
+        carets = driver.find_elements(By.XPATH, "//tr[contains(@class, 'o_group_header')]//span[contains(@class, 'fa-caret-right')]")
+        print(f"🔎 Found {len(carets)} collapsed groups")
+
+        if not carets:
+            print("✅ All groups expanded.")
+            break
+
+        for i, caret in enumerate(carets):
+            try:
+                driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", caret)
+                time.sleep(1)
+                driver.execute_script("arguments[0].click();", caret)
+                print(f"✅ Expanded group {i+1}")
+                time.sleep(1.5)  # Allow new rows to load
+                break  # Start over to catch new carets
+            except Exception as e:
+                print(f"⚠️ Failed to expand group {i+1}: {e}")
+
+def click_all_checkboxes(driver):
+    checkboxes = driver.find_elements(By.XPATH, "//input[@type='checkbox']")
+    print(f"🧾 Found {len(checkboxes)} checkboxes.")
+
+    for i, checkbox in enumerate(checkboxes[1:], start=2):  # Skip the first one if needed
+        try:
+            driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", checkbox)
+            driver.execute_script("arguments[0].click();", checkbox)
+            time.sleep(0.1)
+            print(f"✅ Clicked checkbox {i}")
+        except Exception as e:
+            print(f"❌ Failed to click checkbox {i}: {e}")
+
 def click_when_clickable(driver, xpath, timeout=10):
     """
     Clicks an element when it becomes clickable.
@@ -210,17 +247,9 @@ def kurram_sir_pending():
             print("✅ Both elements exist – running full export flow.")
             try:
                 # Click on all the checkbox 3 times
-                click_when_clickable(driver, "/html/body/div[1]/div/div[2]/div[2]/table/thead/tr/th[1]/div/input")
+                expand_by_group_class(driver)
                 time.sleep(1)
-                click_when_clickable(driver, "/html/body/div[1]/div/div[2]/div[2]/table/thead/tr/th[1]/div/input")
-                time.sleep(1)
-                click_when_clickable(driver, "/html/body/div[1]/div/div[2]/div[2]/table/thead/tr/th[1]/div/input")
-                time.sleep(1)
-
-                # Click on select all
-                click_when_clickable(driver, "/html/body/div[1]/div/div[1]/div/div[2]/div/div[1]/span/a[1]")
-                time.sleep(2)
-
+                click_all_checkboxes(driver)
                 same_work()
 
             except Exception as e:
@@ -234,13 +263,9 @@ def kurram_sir_pending():
             print("⚠️ Only one element exists – running partial export flow.")
             try:
                 # Click on all the checkbox 3 times
-                click_when_clickable(driver, "/html/body/div[1]/div/div[2]/div[2]/table/thead/tr/th[1]/div/input")
+                expand_by_group_class(driver)
                 time.sleep(1)
-                click_when_clickable(driver, "/html/body/div[1]/div/div[2]/div[2]/table/thead/tr/th[1]/div/input")
-                time.sleep(1)
-                click_when_clickable(driver, "/html/body/div[1]/div/div[2]/div[2]/table/thead/tr/th[1]/div/input")
-                time.sleep(2)
-
+                click_all_checkboxes(driver)
                 same_work()
 
             except Exception as e:
