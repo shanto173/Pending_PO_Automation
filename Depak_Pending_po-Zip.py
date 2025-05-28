@@ -162,8 +162,7 @@ def kurram_sir_pending():
         print("Text found:", text)
         
         scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
-        creds = ServiceAccountCredentials.from_json_keyfile_name(
-            "smiling-castle-458204-g0-5b5c549533a0.json", scope)
+        creds = service_account.Credentials.from_service_account_file('gcreds.json', scopes=scope)
         client = gspread.authorize(creds)
 
         # Open the sheet and paste the data
