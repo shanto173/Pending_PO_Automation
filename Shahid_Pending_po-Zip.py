@@ -207,31 +207,47 @@ def shahid_sir_pending():
         
         if has_first and has_second:
             print("✅ Both elements exist – running full export flow.")
-            # # Click on input/check box 
-            # click_when_clickable(driver,"/html/body/div[1]/div/div[2]/div[2]/table/tbody/tr[3]/td[1]/div/input")
-            # Click on all the checkbox
-            click_when_clickable(driver,"/html/body/div[1]/div/div[2]/div[2]/table/thead/tr/th[1]/div/input")
-            time.sleep(1)
-            click_when_clickable(driver,"/html/body/div[1]/div/div[2]/div[2]/table/thead/tr/th[1]/div/input")
-            time.sleep(1)
-            click_when_clickable(driver,"/html/body/div[1]/div/div[2]/div[2]/table/thead/tr/th[1]/div/input")
-            time.sleep(1)
-            # click on select all
-            click_when_clickable(driver,"/html/body/div[1]/div/div[1]/div/div[2]/div/div[1]/span/a[1]")
-            time.sleep(2)
-            same_work() 
+            try:
+                # Click on all the checkbox 3 times
+                click_when_clickable(driver, "/html/body/div[1]/div/div[2]/div[2]/table/thead/tr/th[1]/div/input")
+                time.sleep(2)
+                click_when_clickable(driver, "/html/body/div[1]/div/div[2]/div[2]/table/thead/tr/th[1]/div/input")
+                time.sleep(2)
+                click_when_clickable(driver, "/html/body/div[1]/div/div[2]/div[2]/table/thead/tr/th[1]/div/input")
+                time.sleep(2)
+
+                # Click on select all
+                click_when_clickable(driver, "/html/body/div[1]/div/div[1]/div/div[2]/div/div[1]/span/a[1]")
+                time.sleep(2)
+
+                same_work()
+
+            except Exception as e:
+                timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+                screenshot = f"screenshot_full_{timestamp}.png"
+                driver.save_screenshot(screenshot)
+                print(f"❌ Error during full export flow: {e}")
+                print(f"📸 Screenshot saved: {screenshot}")
+
         elif has_first or has_second:
             print("⚠️ Only one element exists – running partial export flow.")
-            # # Click on input/check box 
-            # click_when_clickable(driver,"/html/body/div[1]/div/div[2]/div[2]/table/tbody/tr[3]/td[1]/div/input")
-            # Click on all the checkbox
-            click_when_clickable(driver,"/html/body/div[1]/div/div[2]/div[2]/table/thead/tr/th[1]/div/input")
-            time.sleep(1)
-            click_when_clickable(driver,"/html/body/div[1]/div/div[2]/div[2]/table/thead/tr/th[1]/div/input")
-            time.sleep(1)
-            click_when_clickable(driver,"/html/body/div[1]/div/div[2]/div[2]/table/thead/tr/th[1]/div/input")
-            time.sleep(2)
-            same_work()
+            try:
+                # Click on all the checkbox 3 times
+                click_when_clickable(driver, "/html/body/div[1]/div/div[2]/div[2]/table/thead/tr/th[1]/div/input")
+                time.sleep(1)
+                click_when_clickable(driver, "/html/body/div[1]/div/div[2]/div[2]/table/thead/tr/th[1]/div/input")
+                time.sleep(1)
+                click_when_clickable(driver, "/html/body/div[1]/div/div[2]/div[2]/table/thead/tr/th[1]/div/input")
+                time.sleep(2)
+
+                same_work()
+
+            except Exception as e:
+                timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+                screenshot = f"screenshot_partial_{timestamp}.png"
+                driver.save_screenshot(screenshot)
+                print(f"❌ Error during partial export flow: {e}")
+                print(f"📸 Screenshot saved: {screenshot}")
 
 while True:
     try:
