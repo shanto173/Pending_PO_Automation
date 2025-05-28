@@ -175,7 +175,7 @@ jobs:
 
       - name: Upload Selenium Screenshots
         if: always()  # Ensure this runs even if scripts fail
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: selenium-screenshots
           path: screenshots/
