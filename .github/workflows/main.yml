@@ -38,17 +38,17 @@ jobs:
         run: |
           echo "${{ secrets.GCREDS_JSON }}" | base64 -d > gcreds.json
 
-# Depak
+# # Depak
 
-      - name: Run Depak_Pending_po-Zip
-        env:
-          GOOGLE_APPLICATION_CREDENTIALS: gcreds.json
-        run: python Depak_Pending_po-Zip.py
+#       - name: Run Depak_Pending_po-Zip
+#         env:
+#           GOOGLE_APPLICATION_CREDENTIALS: gcreds.json
+#         run: python Depak_Pending_po-Zip.py
 
-      - name: Run Depak_Pending_po-MT
-        env:
-          GOOGLE_APPLICATION_CREDENTIALS: gcreds.json
-        run: python Depak_Pending_po-MT.py
+#       - name: Run Depak_Pending_po-MT
+#         env:
+#           GOOGLE_APPLICATION_CREDENTIALS: gcreds.json
+#         run: python Depak_Pending_po-MT.py
 
 #  Khurram
 
