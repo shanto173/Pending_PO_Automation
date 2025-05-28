@@ -233,6 +233,9 @@ def shahid_sir_pending():
             try:
                 # Click all the checkboxes 3 times
                 click_when_clickable(driver, "/html/body/div[1]/div/div[2]/div[2]/table/thead/tr/th[1]/div")
+                click_when_clickable(driver, "/html/body/div[1]/div/div[2]/div[2]/table/thead/tr/th[1]/div")
+                click_when_clickable(driver, "/html/body/div[1]/div/div[2]/div[2]/table/thead/tr/th[1]/div")
+                
 
                 time.sleep(1)
                 same_work()
