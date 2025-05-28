@@ -211,11 +211,6 @@ def shahid_sir_pending():
                 # Click on all the checkbox 3 times
                 click_when_clickable(driver, "/html/body/div[1]/div/div[2]/div[2]/table/thead/tr/th[1]/div/input")
                 time.sleep(2)
-                click_when_clickable(driver, "/html/body/div[1]/div/div[2]/div[2]/table/thead/tr/th[1]/div/input")
-                time.sleep(2)
-                click_when_clickable(driver, "/html/body/div[1]/div/div[2]/div[2]/table/thead/tr/th[1]/div/input")
-                time.sleep(2)
-
                 # Click on select all
                 click_when_clickable(driver, "/html/body/div[1]/div/div[1]/div/div[2]/div/div[1]/span/a[1]")
                 time.sleep(2)
@@ -235,11 +230,6 @@ def shahid_sir_pending():
                 # Click on all the checkbox 3 times
                 click_when_clickable(driver, "/html/body/div[1]/div/div[2]/div[2]/table/thead/tr/th[1]/div/input")
                 time.sleep(1)
-                click_when_clickable(driver, "/html/body/div[1]/div/div[2]/div[2]/table/thead/tr/th[1]/div/input")
-                time.sleep(1)
-                click_when_clickable(driver, "/html/body/div[1]/div/div[2]/div[2]/table/thead/tr/th[1]/div/input")
-                time.sleep(2)
-
                 same_work()
 
             except Exception as e:

@@ -269,20 +269,20 @@ while True:
         except:
             pass
 
-        switcher_span = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR,
-            "div.o_menu_systray div.o_switch_company_menu > button > span"
-        )))
-        driver.execute_script("arguments[0].scrollIntoView(true);", switcher_span)
-        switcher_span.click()
-        time.sleep(2)
+        # switcher_span = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR,
+        #     "div.o_menu_systray div.o_switch_company_menu > button > span"
+        # )))
+        # driver.execute_script("arguments[0].scrollIntoView(true);", switcher_span)
+        # switcher_span.click()
+        # time.sleep(2)
 
-        # === Step 3: Click 'Zipper' company ===
-        target_div = wait.until(EC.element_to_be_clickable((By.XPATH,
-            "//div[contains(@class, 'log_into')][span[contains(text(), 'Zipper')]]"
-        )))
-        driver.execute_script("arguments[0].scrollIntoView(true);", target_div)
-        target_div.click()
-        time.sleep(2)
+        # # === Step 3: Click 'Zipper' company ===
+        # target_div = wait.until(EC.element_to_be_clickable((By.XPATH,
+        #     "//div[contains(@class, 'log_into')][span[contains(text(), 'Zipper')]]"
+        # )))
+        # driver.execute_script("arguments[0].scrollIntoView(true);", target_div)
+        # target_div.click()
+        # time.sleep(2)
         # === Step 4: Navigate to report section ===
         driver.get("https://taps.odoo.com/web#action=529&model=purchase.order&view_type=list&cids=1&menu_id=342")
         wait.until(EC.presence_of_element_located((By.XPATH, "//html")))
