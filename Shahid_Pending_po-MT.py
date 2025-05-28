@@ -228,10 +228,7 @@ def shahid_sir_pending():
             print("⚠️ Only one element exists – running partial export flow.")
             try:
                 # Click on all the checkbox 3 times
-                for _ in range(3):
-                    click_when_clickable(driver, "/html/body/div[1]/div/div[2]/div[2]/table/thead/tr/th[1]/div/input")
-                    time.sleep(1)
-
+                click_when_clickable(driver, "/html/body/div[1]/div/div[2]/div[2]/table/thead/tr/th[1]/div")
                 time.sleep(1)
                 same_work()
 
