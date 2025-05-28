@@ -38,10 +38,66 @@ jobs:
         run: |
           echo "${{ secrets.GCREDS_JSON }}" | base64 -d > gcreds.json
 
+# Depak
+
       - name: Run Depak_Pending_po-Zip
         env:
           GOOGLE_APPLICATION_CREDENTIALS: gcreds.json
         run: python Depak_Pending_po-Zip.py
+
+      - name: Run Depak_Pending_po-MT
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: gcreds.json
+        run: python Depak_Pending_po-MT.py
+
+#  Khurram
+
+      - name: Run Khurram_Pending_po-Zip
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: gcreds.json
+        run: python Kurram_Pending_po-Zip.py
+
+      - name: Run Khurram_Pending_po-MT
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: gcreds.json
+        run: python Kurram_Pending_po-MT.py
+
+# Shahid
+
+      - name: Run Shahid_Pending_po-Zip
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: gcreds.json
+        run: python Shahid_Pending_po-Zip.py
+
+      - name: Run Shahid_Pending_po-MT
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: gcreds.json
+        run: python Shahid_Pending_po-MT.py
+
+# Suranjan
+      - name: Run Suranjan_Pending_po-Zip
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: gcreds.json
+        run: python Suranjon_Pending_po-Zip.py
+
+      - name: Run Suranjan_Pending_po-MT
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: gcreds.json
+        run: python Suranjon_Pending_po-MT.py
+
+
+# Monir
+
+      - name: Run Monir_Pending_po-Zip
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: gcreds.json
+        run: python Monir_Pending_po-Zip.py
+
+      - name: Run Monir_Pending_po-MT
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: gcreds.json
+        run: python Monir_Pending_po-MT.py
+
 
 
       - name: Clean up creds
