@@ -1,18 +1,139 @@
+# name: pending_po
+
+# on:
+#   workflow_dispatch:  # Manual run
+#   schedule:
+#     - cron: '0 2 * * *'   # 8:00 AM BD
+#     - cron: '0 3 * * *'   # 9:00 AM BD
+#     - cron: '30 3 * * *'  # 9:30 AM BD
+#     - cron: '58 3 * * *'  # 9:58 AM BD
+#     - cron: '0 4 * * *'   # 10:00 AM BD
+#     - cron: '30 4 * * *'  # 10:30 AM BD
+#     - cron: '0 5 * * *'   # 11:00 AM BD
+#     - cron: '30 5 * * *'  # 11:30 AM BD
+#     - cron: '0 6 * * *'   # 12:00 PM BD
+#     - cron: '30 6 * * *'  # 12:30 PM BD
+
+# jobs:
+#   run-script:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - name: Checkout repo
+#         uses: actions/checkout@v3
+
+#       - name: Set up Python
+#         uses: actions/setup-python@v4
+#         with:
+#           python-version: '3.10'
+
+#       - name: Install dependencies
+#         run: |
+#           pip install selenium pandas gspread oauth2client gspread-dataframe webdriver-manager openpyxl pytz google-auth
+
+#       - name: Setup Chrome
+#         uses: browser-actions/setup-chrome@latest
+
+#       - name: Create creds file
+#         run: |
+#           echo "${{ secrets.GCREDS_JSON }}" | base64 -d > gcreds.json
+
+# # # Depak
+
+# #       - name: Run Depak_Pending_po-Zip
+# #         env:
+# #           GOOGLE_APPLICATION_CREDENTIALS: gcreds.json
+# #         run: python Depak_Pending_po-Zip.py
+
+# #       - name: Run Depak_Pending_po-MT
+# #         env:
+# #           GOOGLE_APPLICATION_CREDENTIALS: gcreds.json
+# #         run: python Depak_Pending_po-MT.py
+
+# # #  Khurram
+
+# #       - name: Run Khurram_Pending_po-Zip
+# #         env:
+# #           GOOGLE_APPLICATION_CREDENTIALS: gcreds.json
+# #         run: python Kurram_Pending_po-Zip.py
+
+# #       - name: Run Khurram_Pending_po-MT
+# #         env:
+# #           GOOGLE_APPLICATION_CREDENTIALS: gcreds.json
+# #         run: python Kurram_Pending_po-MT.py
+
+# # Shahid
+
+#       - name: Run Shahid_Pending_po-Zip
+#         env:
+#           GOOGLE_APPLICATION_CREDENTIALS: gcreds.json
+#         run: python Shahid_Pending_po-Zip.py
+
+#       - name: Run Shahid_Pending_po-MT
+#         env:
+#           GOOGLE_APPLICATION_CREDENTIALS: gcreds.json
+#         run: python Shahid_Pending_po-MT.py
+
+# # # Suranjan
+# #       - name: Run Suranjan_Pending_po-Zip
+# #         env:
+# #           GOOGLE_APPLICATION_CREDENTIALS: gcreds.json
+# #         run: python Suranjon_Pending_po-Zip.py
+
+# #       - name: Run Suranjan_Pending_po-MT
+# #         env:
+# #           GOOGLE_APPLICATION_CREDENTIALS: gcreds.json
+# #         run: python Suranjon_Pending_po-MT.py
+
+
+# # # Monir
+
+# #       - name: Run Monir_Pending_po-Zip
+# #         env:
+# #           GOOGLE_APPLICATION_CREDENTIALS: gcreds.json
+# #         run: python Monir_Pending_po-Zip.py
+
+# #       - name: Run Monir_Pending_po-MT
+# #         env:
+# #           GOOGLE_APPLICATION_CREDENTIALS: gcreds.json
+# #         run: python Monir_Pending_po-MT.py
+
+
+
+#       - name: Clean up creds
+#         run: rm gcreds.json
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 name: pending_po
 
 on:
-  workflow_dispatch:  # Manual run
+  workflow_dispatch:
   schedule:
-    - cron: '0 2 * * *'   # 8:00 AM BD
-    - cron: '0 3 * * *'   # 9:00 AM BD
-    - cron: '30 3 * * *'  # 9:30 AM BD
-    - cron: '58 3 * * *'  # 9:58 AM BD
-    - cron: '0 4 * * *'   # 10:00 AM BD
-    - cron: '30 4 * * *'  # 10:30 AM BD
-    - cron: '0 5 * * *'   # 11:00 AM BD
-    - cron: '30 5 * * *'  # 11:30 AM BD
-    - cron: '0 6 * * *'   # 12:00 PM BD
-    - cron: '30 6 * * *'  # 12:30 PM BD
+    - cron: '0 2 * * *'
+    - cron: '0 3 * * *'
+    - cron: '30 3 * * *'
+    - cron: '58 3 * * *'
+    - cron: '0 4 * * *'
+    - cron: '30 4 * * *'
+    - cron: '0 5 * * *'
+    - cron: '30 5 * * *'
+    - cron: '0 6 * * *'
+    - cron: '30 6 * * *'
 
 jobs:
   run-script:
@@ -38,31 +159,7 @@ jobs:
         run: |
           echo "${{ secrets.GCREDS_JSON }}" | base64 -d > gcreds.json
 
-# # Depak
-
-#       - name: Run Depak_Pending_po-Zip
-#         env:
-#           GOOGLE_APPLICATION_CREDENTIALS: gcreds.json
-#         run: python Depak_Pending_po-Zip.py
-
-#       - name: Run Depak_Pending_po-MT
-#         env:
-#           GOOGLE_APPLICATION_CREDENTIALS: gcreds.json
-#         run: python Depak_Pending_po-MT.py
-
-# #  Khurram
-
-#       - name: Run Khurram_Pending_po-Zip
-#         env:
-#           GOOGLE_APPLICATION_CREDENTIALS: gcreds.json
-#         run: python Kurram_Pending_po-Zip.py
-
-#       - name: Run Khurram_Pending_po-MT
-#         env:
-#           GOOGLE_APPLICATION_CREDENTIALS: gcreds.json
-#         run: python Kurram_Pending_po-MT.py
-
-# Shahid
+# ===== Your Python Script Calls =====
 
       - name: Run Shahid_Pending_po-Zip
         env:
@@ -74,31 +171,19 @@ jobs:
           GOOGLE_APPLICATION_CREDENTIALS: gcreds.json
         run: python Shahid_Pending_po-MT.py
 
-# # Suranjan
-#       - name: Run Suranjan_Pending_po-Zip
-#         env:
-#           GOOGLE_APPLICATION_CREDENTIALS: gcreds.json
-#         run: python Suranjon_Pending_po-Zip.py
+# ===== Upload Screenshots as Artifact =====
 
-#       - name: Run Suranjan_Pending_po-MT
-#         env:
-#           GOOGLE_APPLICATION_CREDENTIALS: gcreds.json
-#         run: python Suranjon_Pending_po-MT.py
+      - name: Upload Selenium Screenshots
+        if: always()  # Ensure this runs even if scripts fail
+        uses: actions/upload-artifact@v3
+        with:
+          name: selenium-screenshots
+          path: screenshots/
 
-
-# # Monir
-
-#       - name: Run Monir_Pending_po-Zip
-#         env:
-#           GOOGLE_APPLICATION_CREDENTIALS: gcreds.json
-#         run: python Monir_Pending_po-Zip.py
-
-#       - name: Run Monir_Pending_po-MT
-#         env:
-#           GOOGLE_APPLICATION_CREDENTIALS: gcreds.json
-#         run: python Monir_Pending_po-MT.py
-
-
+# ===== Cleanup Credentials =====
 
       - name: Clean up creds
         run: rm gcreds.json
+
+
+        
