@@ -176,7 +176,7 @@ def shahid_sir_pending():
         print("Data pasted to Google Sheet (Sheet4).")
 
         # === ✅ Add timestamp to Y2 ===
-        ocal_tz = pytz.timezone('Asia/Dhaka')
+        local_tz = pytz.timezone('Asia/Dhaka')
         local_time = datetime.now(local_tz).strftime("%Y-%m-%d %H:%M:%S")
         worksheet.update("C2", [[f"{local_time}"]])
         print(f"Timestamp written to C2: {local_time}")
@@ -211,7 +211,11 @@ def shahid_sir_pending():
             # click_when_clickable(driver,"/html/body/div[1]/div/div[2]/div[2]/table/tbody/tr[3]/td[1]/div/input")
             # Click on all the checkbox
             click_when_clickable(driver,"/html/body/div[1]/div/div[2]/div[2]/table/thead/tr/th[1]/div/input")
-            time.sleep(2)
+            time.sleep(1)
+            click_when_clickable(driver,"/html/body/div[1]/div/div[2]/div[2]/table/thead/tr/th[1]/div/input")
+            time.sleep(1)
+            click_when_clickable(driver,"/html/body/div[1]/div/div[2]/div[2]/table/thead/tr/th[1]/div/input")
+            time.sleep(1)
             # click on select all
             click_when_clickable(driver,"/html/body/div[1]/div/div[1]/div/div[2]/div/div[1]/span/a[1]")
             time.sleep(2)
@@ -221,6 +225,10 @@ def shahid_sir_pending():
             # # Click on input/check box 
             # click_when_clickable(driver,"/html/body/div[1]/div/div[2]/div[2]/table/tbody/tr[3]/td[1]/div/input")
             # Click on all the checkbox
+            click_when_clickable(driver,"/html/body/div[1]/div/div[2]/div[2]/table/thead/tr/th[1]/div/input")
+            time.sleep(1)
+            click_when_clickable(driver,"/html/body/div[1]/div/div[2]/div[2]/table/thead/tr/th[1]/div/input")
+            time.sleep(1)
             click_when_clickable(driver,"/html/body/div[1]/div/div[2]/div[2]/table/thead/tr/th[1]/div/input")
             time.sleep(2)
             same_work()
