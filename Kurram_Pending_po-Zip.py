@@ -25,7 +25,6 @@ from google.auth.transport.requests import Request
 from google.oauth2 import service_account
 import gspread
 from gspread_dataframe import set_with_dataframe
-from datetime import datetime
 import pytz
 import sys
 import logging
@@ -260,7 +259,6 @@ def kurram_sir_pending():
                 same_work()
 
             except Exception as e:
-                from datetime import datetime
                 timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
                 screenshot_name = f"full_flow_error_{timestamp}.png"
                 driver.save_screenshot(screenshot_name)
@@ -276,7 +274,6 @@ def kurram_sir_pending():
                 same_work()
 
             except Exception as e:
-                from datetime import datetime
                 timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
                 screenshot_name = f"partial_flow_error_{timestamp}.png"
                 driver.save_screenshot(screenshot_name)
