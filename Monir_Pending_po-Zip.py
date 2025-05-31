@@ -371,11 +371,14 @@ try:
     worksheet = sheet.worksheet("Monir_pending-Zip")
 
     # Clear old content (optional)
-    sheet.batch_clear(['B:U'])
+    sheet.batch_clear(['B:L'])
 
     # Paste new data
-    set_with_dataframe(worksheet, df)
-    print("Data pasted to Google Sheet (Sheet4).")
+    data = [df.columns.tolist()] + df.values.tolist()
+
+    # Update data starting from cell B1 (row=1, col=2)
+    worksheet.update('B1', data)
+    print("Data pasted on B1")
 
     # === ✅ Add timestamp to Y2 ===
     local_tz = pytz.timezone('Asia/Dhaka')
