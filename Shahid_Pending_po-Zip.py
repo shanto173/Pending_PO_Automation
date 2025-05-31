@@ -380,23 +380,18 @@ try:
     sheet = client.open_by_key("1zY2lwxdNXyt7yN1cKpggTRbgH7gXxE1JIHNJQ_my-uk")
     worksheet = sheet.worksheet("Shahid_Pending-Zip")
 
-    # Clear old content (optional)
-    worksheet.batch_clear(['B:L'])
 
     # Paste new data
-    data = [df.columns.tolist()] + df.values.tolist()
+    worksheet.batch_clear(['A:O'])
     # Replace inf, -inf, NaN, and NaT with empty string
-    df = df.replace([float('inf'), float('-inf'), pd.NaT, pd.NA], '').fillna('')
+    set_with_dataframe(worksheet, df)
 
-    # Update data starting from cell B1 (row=1, col=2)
-    worksheet.update('B1', data)
-    print("Data pasted on B1")
-    print("Paste on B1")
+    print("Paste on A1")
 
     # === ✅ Add timestamp to Y2 ===
     local_tz = pytz.timezone('Asia/Dhaka')
     local_time = datetime.now(local_tz).strftime("%Y-%m-%d %H:%M:%S")
-    worksheet.update("A2", [[f"{local_time}"]])
+    worksheet.update("Z2", [[f"{local_time}"]])
     print(f"Timestamp written to W2: {local_time}")
 
 except Exception as e:
