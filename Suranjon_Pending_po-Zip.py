@@ -213,7 +213,7 @@ def suranjan_sir_pending():
         worksheet = sheet.worksheet("Suranjan_pending-Zip")
 
         # Clear old content (optional)
-        worksheet.clear()
+        worksheet.batch_clear(['A:O'])
         df = pd.DataFrame([["No Zipper Pending For Suranjan Sir"]])
         # Paste new data
         set_with_dataframe(worksheet, df)

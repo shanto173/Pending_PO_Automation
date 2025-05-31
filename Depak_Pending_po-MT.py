@@ -210,7 +210,7 @@ def kurram_sir_pending():
         worksheet = sheet.worksheet("Depak_Pending-MT")
 
         # Clear old content (optional)
-        worksheet.clear()
+        worksheet.batch_clear(['A:O'])
         df = pd.DataFrame([["No Metal Pending For Depak Sir"]])
         # Paste new data
         set_with_dataframe(worksheet, df)

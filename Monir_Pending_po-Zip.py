@@ -210,7 +210,7 @@ def monir_sir_pending():
         worksheet = sheet.worksheet("Monir_pending-Zip")
 
         # Clear old content (optional)
-        worksheet.clear()
+        worksheet.batch_clear(['A:O'])
         df = pd.DataFrame([["No Zipper Pending For Monir Sir"]])
         # Paste new data
         set_with_dataframe(worksheet, df)
