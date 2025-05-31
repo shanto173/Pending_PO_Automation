@@ -370,7 +370,7 @@ try:
 
     # Clear old content (optional)
     worksheet.batch_clear(['B:L'])
-
+    df = df.replace([float('inf'), float('-inf')], pd.NA).fillna('')
     # Paste new data
     data = [df.columns.tolist()] + df.values.tolist()
 

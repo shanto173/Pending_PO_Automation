@@ -385,7 +385,7 @@ try:
 
     # Paste new data
     data = [df.columns.tolist()] + df.values.tolist()
-
+    df = df.replace([float('inf'), float('-inf')], pd.NA).fillna('')
     # Update data starting from cell B1 (row=1, col=2)
     worksheet.update('B1', data)
     print("Data pasted on B1")
