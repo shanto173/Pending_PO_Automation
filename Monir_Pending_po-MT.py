@@ -368,7 +368,7 @@ try:
     worksheet = sheet.worksheet("Monir_pending-MT")
 
     # Clear old content (optional)
-    sheet.batch_clear(['B:L'])
+    worksheet.batch_clear(['B:L'])
 
     # Paste new data
     data = [df.columns.tolist()] + df.values.tolist()

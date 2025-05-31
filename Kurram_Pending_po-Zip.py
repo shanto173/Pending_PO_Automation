@@ -376,7 +376,7 @@ try:
     worksheet = sheet.worksheet("Khurram_pending-Zip")
 
     # Clear old content (optional)
-    sheet.batch_clear(['B:L'])
+    worksheet.batch_clear(['B:L'])
 
     # Paste new data
     data = [df.columns.tolist()] + df.values.tolist()
