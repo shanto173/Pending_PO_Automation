@@ -371,7 +371,7 @@ try:
     worksheet = sheet.worksheet("Monir_pending-Zip")
 
     # Clear old content (optional)
-    worksheet.clear()
+    sheet.batch_clear(['B:U'])
 
     # Paste new data
     set_with_dataframe(worksheet, df)
@@ -380,7 +380,7 @@ try:
     # === ✅ Add timestamp to Y2 ===
     local_tz = pytz.timezone('Asia/Dhaka')
     local_time = datetime.now(local_tz).strftime("%Y-%m-%d %H:%M:%S")
-    worksheet.update("W2", [[f"{local_time}"]])
+    worksheet.update("A2", [[f"{local_time}"]])
     print(f"Timestamp written to W2: {local_time}")
 
 except Exception as e:
