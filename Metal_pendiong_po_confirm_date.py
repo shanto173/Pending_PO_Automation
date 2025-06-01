@@ -58,7 +58,7 @@ chrome_options.add_experimental_option("prefs", {
     "safebrowsing.enabled": True
 })
 
-pattern = "Purchase Order (purchase.order)"
+pattern = "Purchase Approval Duration (purchase.approval.duration)"
 
 def is_file_downloaded():
     return any(Path(download_dir).glob(f"*{pattern}*.xlsx"))
