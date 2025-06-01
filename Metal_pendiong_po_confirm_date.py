@@ -103,7 +103,7 @@ def click_all_checkboxes(driver):
             print(f"✅ Clicked checkbox {i}")
         except Exception as e:
             print(f"❌ Failed to click checkbox {i}: {e}")
-
+    
 
 def click_when_clickable(driver, xpath, timeout=10):
     """
@@ -256,6 +256,12 @@ def pending_apprv_date():
     time.sleep(1)
     click_all_checkboxes(driver)
     time.sleep(2)
+    
+    if "Select all" in driver.page_source:
+        click_when_clickable(driver, "/html/body/div[1]/div/div[1]/div/div[2]/div/div[1]/span/a[1]")
+    else:
+        print("'Select all' not found. Skipping click.")
+    
     same_work()
             
 while True:

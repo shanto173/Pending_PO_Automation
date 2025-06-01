@@ -255,6 +255,13 @@ def pending_apprv_date():
     expand_by_group_class(driver)
     time.sleep(1)
     click_all_checkboxes(driver)
+    time.sleep(3)
+    
+    if "Select all" in driver.page_source:
+        click_when_clickable(driver, "/html/body/div[1]/div/div[1]/div/div[2]/div/div[1]/span/a[1]")
+    else:
+        print("'Select all' not found. Skipping click.")
+
     time.sleep(2)
     same_work()
             
