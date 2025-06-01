@@ -221,6 +221,19 @@ jobs:
           GOOGLE_APPLICATION_CREDENTIALS: gcreds.json
         run: python Monir_Pending_po-MT.py
 
+
+# # Due days
+
+      - name: Run Zipper_pendiong_po_confirm_date
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: gcreds.json
+        run: python Zipper_pendiong_po_confirm_date.py
+
+      - name: Run Metal_pendiong_po_confirm_date
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: gcreds.json
+        run: python Metal_pendiong_po_confirm_date.py
+
 # ===== Upload Screenshots as Artifact =====
 
       - name: Upload Selenium Screenshots
