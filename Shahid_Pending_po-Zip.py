@@ -216,7 +216,7 @@ def shahid_sir_pending():
 
         # Clear old content (optional)
         worksheet.batch_clear(['A:O'])
-        df = pd.DataFrame([["No Zipper Pending For Shahid Sir "]])
+        df = pd.DataFrame([["No Zipper Pending For Shahid Sir"]])
         # Paste new data
         set_with_dataframe(worksheet, df)
         print("Data pasted to Google Sheet (Sheet4).")
